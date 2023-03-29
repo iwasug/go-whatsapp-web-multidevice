@@ -73,17 +73,15 @@ func runRest(_ *cobra.Command, _ []string) {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
-	if config.AppBasicAuthCredential != "" {
-		account := map[string]string{
-			"radyalabs": "passwordsulit",
-			"radya":     "passworddiencrypt",
-		}
+	account := map[string]string{
+		"radyalabs": "passwordsulit",
+		"radya":     "passworddiencrypt",
+	}
 
-		if account != nil {
-			app.Use(basicauth.New(basicauth.Config{
-				Users: account,
-			}))
-		}
+	if account != nil {
+		app.Use(basicauth.New(basicauth.Config{
+			Users: account,
+		}))
 	}
 
 	db := whatsapp.InitWaDB()
