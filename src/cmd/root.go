@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/aldinokemal/go-whatsapp-web-multidevice/config"
 	"github.com/aldinokemal/go-whatsapp-web-multidevice/internal/rest"
 	"github.com/aldinokemal/go-whatsapp-web-multidevice/internal/rest/helpers"
@@ -19,9 +22,6 @@ import (
 	"github.com/markbates/pkger"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/spf13/cobra"
-	"log"
-	"os"
-	"strings"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -74,14 +74,9 @@ func runRest(_ *cobra.Command, _ []string) {
 	}))
 
 	if config.AppBasicAuthCredential != "" {
-		account := make(map[string]string, 0)
-		multipleBA := strings.Split(config.AppBasicAuthCredential, ",")
-		for _, basicAuth := range multipleBA {
-			ba := strings.Split(basicAuth, ":")
-			if len(ba) != 2 {
-				log.Fatalln("Basic auth is not valid, please this following format <user>:<secret>")
-			}
-			account[ba[0]] = ba[1]
+		account := map[string]string{
+			"radyalabs": "passwordsulit",
+			"radya":     "passworddiencrypt",
 		}
 
 		if account != nil {

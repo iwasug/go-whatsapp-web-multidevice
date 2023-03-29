@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.0'
 services:
   whatsapp_go:
     logging:
@@ -6,7 +6,7 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-    image: "aldinokemal2104/go-whatsapp-web-multidevice:latest"
+    image: "devradyalabs/go-whatsapp-web-multidevice:latest"
     build:
       context: .
       dockerfile: ./docker/golang.Dockerfile
